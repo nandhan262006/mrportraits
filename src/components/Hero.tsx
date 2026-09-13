@@ -64,6 +64,13 @@ export default function Hero() {
         ))}
       </div>
 
+      {/* Cinematic Dark Gradient Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-dark-bg/50 via-dark-bg/25 to-dark-bg/70" />
+      <div className="absolute inset-0 bg-gradient-to-r from-dark-bg/25 to-transparent" />
+
+      {/* Vignette */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_45%,rgba(8,13,15,0.45)_100%)]" />
+
       {/* Content */}
       <div
         ref={contentRef}
