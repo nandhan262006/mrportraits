@@ -16,18 +16,6 @@ const GRID_IMAGES = [
   "/downloads/2024-03-09_13-00-08_UTC_1.jpg",
   "/downloads/2024-03-09_13-00-08_UTC_2.jpg",
   "/downloads/2024-03-09_13-00-08_UTC_4.jpg",
-  "/downloads/2024-03-09_13-00-08_UTC_5.jpg",
-  "/downloads/2024-03-09_13-00-08_UTC_6.jpg",
-  "/downloads/2024-03-09_13-00-08_UTC_8.jpg",
-  "/downloads/2024-03-19_06-37-07_UTC_1.jpg",
-  "/downloads/2024-03-19_06-37-07_UTC_2.jpg",
-  "/downloads/2024-03-19_06-37-07_UTC_3.jpg",
-  "/downloads/2024-04-04_18-02-09_UTC_1.jpg",
-  "/downloads/2024-04-04_18-02-09_UTC_2.jpg",
-  "/downloads/2024-06-20_17-47-30_UTC_1.jpg",
-  "/downloads/2024-06-20_17-47-30_UTC_2.jpg",
-  "/downloads/2024-08-10_16-05-49_UTC_2.jpg",
-  "/downloads/2024-08-10_16-05-49_UTC_4.jpg",
 ];
 
 export default function Hero() {
@@ -52,7 +40,7 @@ export default function Hero() {
     >
       {/* Photo Grid Background */}
       <div
-        className="absolute inset-0 z-0 grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8"
+        className="absolute inset-0 z-0 grid grid-cols-3"
         style={{ gap: 0 }}
       >
         {GRID_IMAGES.map((src, i) => (
@@ -67,7 +55,7 @@ export default function Hero() {
               style={{
                 width: "100%",
                 height: "100%",
-                objectFit: "cover",
+                objectFit: "contain",
                 display: "block",
                 filter: "brightness(1)",
               }}
