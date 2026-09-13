@@ -1,0 +1,169 @@
+"use client";
+
+import { useEffect, useRef } from "react";
+import Image from "next/image";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
+
+export default function About() {
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const visualRef = useRef<HTMLDivElement>(null);
+  const statsRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!sectionRef.current) return;
+
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        sectionRef.current!.querySelectorAll(".about-text-reveal"),
+        { y: 40, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.8,
+          stagger: 0.12,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: sectionRef.current!,
+            start: "top 75%",
+            toggleActions: "play none none none",
+          },
+        }
+      );
+
+      if (visualRef.current) {
+        gsap.fromTo(
+          visualRef.current,
+          { x: -50, opacity: 0 },
+          {
+            x: 0,
+            opacity: 1,
+            duration: 1,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: sectionRef.current!,
+              start: "top 75%",
+              toggleActions: "play none none none",
+            },
+          }
+        );
+      }
+
+      if (statsRef.current) {
+        gsap.fromTo(
+          statsRef.current.querySelectorAll(".stat-item"),
+          { y: 20, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.6,
+            stagger: 0.15,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: statsRef.current,
+              start: "top 90%",
+              toggleActions: "play none none none",
+            },
+          }
+        );
+      }
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
+  return (
+    <section id="about" className="py-24 px-6 bg-dark-bg">
+      <div ref={sectionRef} className="max-w-6xl mx-auto">
+        {/* Section Header */}
+        <div className="text-center mb-16">
+          <span className="about-text-reveal text-gold text-sm font-semibold uppercase tracking-[0.3em]">
+            Our Story
+          </span>
+          <h2 className="about-text-reveal text-4xl md:text-5xl font-bold text-warm-white mt-4">
+            About Mr. Portrait&apos;s Photography
+          </h2>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-16 items-center">
+          {/* Image Side — clean, no overlays */}
+          <div ref={visualRef}>
+            <div className="relative aspect-[4/5] overflow-hidden rounded-2xl">
+              <Image
+                src="/gallery/about.png"
+                alt="Mr. Portrait's Photography — wedding & portrait photography studio in Eluru"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
+            </div>
+          </div>
+
+          {/* Text Content */}
+          <div className="space-y-6">
+            <p className="about-text-reveal text-gold text-sm font-semibold uppercase tracking-[0.3em]">
+              Honest · Warm · Detailed
+            </p>
+            <h3 className="about-text-reveal text-3xl md:text-4xl font-bold text-warm-white leading-tight">
+              From Passion to Premium
+              <br />
+              Eluru&apos;s Best Photographer
+            </h3>
+            <p className="about-text-reveal text-muted-text text-lg leading-relaxed">
+              What began as a passion for capturing life&apos;s most precious
+              moments has grown into one of Eluru&apos;s most trusted
+              photography studios. Mr. Portrait&apos;s Photography serves
+              families across West Godavari and Andhra Pradesh — from intimate
+              maternity shoots and baby portraits to grand weddings and
+              cultural events.
+            </p>
+            <p className="about-text-reveal text-muted-text text-lg leading-relaxed">
+              Our signature aesthetic blends natural light, warm color, and
+              honest emotion — no cookie-cutter packages. Rated 5.0 on Google,
+              couples and families choose us for quality they can feel and
+              prices that are genuinely fair.
+            </p>
+
+            {/* Specialities */}
+            <div className="about-text-reveal flex gap-8 pt-6">
+              <div>
+                <p className="text-gold font-bold text-lg">Photography</p>
+                <p className="text-muted-text text-sm">
+                  Weddings · Portraits · Maternity · Baby
+                </p>
+              </div>
+              <div className="w-px bg-gold/20" />
+              <div>
+                <p className="text-gold font-bold text-lg">Videography</p>
+                <p className="text-muted-text text-sm">
+                  Cinematic films · Wedding highlights
+                </p>
+              </div>
+            </div>
+
+            {/* Stats */}
+            <div
+              ref={statsRef}
+              className="grid grid-cols-3 gap-6 pt-8 border-t border-gold/10"
+            >
+              <div className="stat-item">
+                <p className="text-3xl font-bold text-gold">5.0★</p>
+                <p className="text-muted-text text-sm mt-1">Google Rating</p>
+              </div>
+              <div className="stat-item">
+                <p className="text-3xl font-bold text-gold">164+</p>
+                <p className="text-muted-text text-sm mt-1">Google Reviews</p>
+              </div>
+              <div className="stat-item">
+                <p className="text-3xl font-bold text-gold">20+</p>
+                <p className="text-muted-text text-sm mt-1">Photo Services</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
