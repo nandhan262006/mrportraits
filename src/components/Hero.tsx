@@ -36,18 +36,15 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative flex flex-col items-center justify-center min-h-screen w-full overflow-hidden"
+      className="relative flex flex-col items-center justify-center min-h-screen w-full overflow-hidden [min-height:100svh]"
     >
       {/* Photo Grid Background */}
       <div
         className="absolute inset-0 z-0 grid grid-cols-3"
-        style={{ gap: 0 }}
+        style={{ gap: 0, gridTemplateRows: "repeat(4, 1fr)" }}
       >
         {GRID_IMAGES.map((src, i) => (
-          <div
-            key={i}
-            style={{ overflow: "hidden", background: "#1a1714", aspectRatio: "3/4" }}
-          >
+          <div key={i} style={{ overflow: "hidden", background: "#1a1714" }}>
             <img
               src={src}
               alt=""
