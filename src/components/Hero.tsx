@@ -69,19 +69,12 @@ export default function Hero() {
                 height: "100%",
                 objectFit: "cover",
                 display: "block",
-                filter: "brightness(0.55)",
+                filter: "brightness(1)",
               }}
             />
           </div>
         ))}
       </div>
-
-      {/* Cinematic Dark Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-dark-bg/70 via-dark-bg/40 to-dark-bg/80" />
-      <div className="absolute inset-0 bg-gradient-to-r from-dark-bg/30 to-transparent" />
-
-      {/* Vignette */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_40%,rgba(8,13,15,0.5)_100%)]" />
 
       {/* Content */}
       <div
